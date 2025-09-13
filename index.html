@@ -124,5 +124,12 @@
         <span><a href="#inicio">Voltar ao topo</a></span>
       </div>
     </footer>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const navWrap = document.getElementById('topNav');
+      const menuBtn = document.getElementById('menuBtn');
+      menuBtn.addEventListener('click', () => navWrap.classList.toggle('open'));
+    </script>
   </body>
 </html>
