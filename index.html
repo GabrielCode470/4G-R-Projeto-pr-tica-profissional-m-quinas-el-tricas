@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="icon.png" type="image/x-icon" />
+    <title>Projeto 4G&R - Esteira Didática com Motor CC</title>
+    <meta
+      name="description"
+      content="Site acadêmico do grupo 4G&R da USF - Universidade São Francisco, apresentando o projeto Esteira Didática com motor CC controlado em quatro quadrantes."
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="nav" id="topNav">
+        <div class="brand">
+          <img class="logo" src="logo.svg" alt="" />
+          <span>Projeto prática profissional: máquinas elétricas</span>
+        </div>
+        <button class="menu-btn" id="menuBtn">Menu</button>
+        <nav id="navLinks">
+          <a href="#inicio">Início</a>
+          <a href="#projeto">O Projeto</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#equipe">Equipe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="inicio" class="hero">
+      <section>
+        <p class="kicker">USF - Universidade São Francisco</p>
+        <h1 class="title">Esteira com Motor de Corrente Contínua (CC)</h1>
+        <p class="subtitle">
+          Projeto em desenvolvimento pelo grupo <strong>4G&R</strong>, prática profissional:
+          máquinas elétricas no curso de Engenharia Elétrica - Campus Bragança Paulista,
+          <strong>Profa. Dra. Annete S. Faesarella</strong>.
+        </p>
+      </section>
+    </main>
+
+    <section id="projeto">
+      <h2 class="section-title">Sobre o Projeto</h2>
+      <p class="section-sub">
+        Este trabalho apresenta um protótipo de
+        <strong>esteira automatizada em escala reduzida</strong>, utilizando motor CC controlado em
+        quatro quadrantes.
+      </p>
+      <p class="section-sub">
+        O protótipo foi projetado para reproduzir o funcionamento de uma esteira industrial
+        automatizada. O motor DC, acoplado a uma correia transportadora, é controlado por uma ponte
+        H bidirecional, que permite operar nos quatro quadrantes: avanço, retrocesso, frenagem e
+        regeneração. Um microcontrolador (Arduino) é utilizado para controlar a velocidade e direção
+        da esteira, além de monitorar a corrente e a potência. Durante a frenagem, o sistema
+        demonstra a possibilidade de regenerar energia, que pode ser direcionada para acender LEDs
+        ou carregar uma pequena bateria. Esse modelo didático destaca como tecnologias de automação
+        podem contribuir para processos industriais mais eficientes e inovadores.
+      </p>
+      <p class="section-sub">
+        A realização do protótipo de esteira transportadora permitiu demonstrar, de forma prática e
+        acessível, a aplicação de conceitos de automação industrial. O projeto mostrou que é
+        possível reproduzir em pequena escala o funcionamento de sistemas industriais modernos,
+        explorando controle bidirecional e regeneração de energia. Além de contribuir como material
+        didático, o projeto reforça a importância da inovação tecnológica no setor produtivo, em
+        consonância com a ODS 9. Vale ressaltar novamente que o projeto ainda está em
+        desenvolvimento podendo sofrer alterações como peças e até mesmo alguns funcionamentos
+      </p>
+      <div class="grid cols-2">
+        <article class="card">
+          <h3>Objetivo</h3>
+          <p>
+            Simular processos industriais de transporte contínuo, com <strong>avanço</strong>,
+            <strong>retrocesso</strong>, <strong>frenagem</strong> e
+            <strong>regeneração de energia</strong>, visando se enquadrar na (ODS) 9 - Indústria,
+            Inovação e Infraestrutura.
+          </p>
+          <p>
+            ODS - Objetivos de Desenvolvimento Sustentável da Agenda 2030 da ONU(Organização das
+            Nações Unidas)
+          </p>
+        </article>
+        <article class="card">
+          <h3>Infraestrutura</h3>
+          <ul>
+            <li>Motor DC (12-24V)</li>
+            <li>Driver H-Bridge (BTS7960 ou similar)</li>
+            <li>Microcontrolador Arduino Uno/Nano</li>
+            <li>Estrutura em MDF/acrílico, correia e roldanas</li>
+            <li>Fonte de 12V ou bateria</li>
+            <li>Painel de LEDs para regeneração</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="galeria">
+      <h2 class="section-title">Galeria</h2>
+      <p class="section-sub">Alguns integrantes do grupo</p>
+      <div class="gallery">
+        <figure class="span-8">
+          <img src="grupo-junto.png" alt="Linha de esteiras" />
+        </figure>
+        <figure class="span-4">
+          <img src="logo.svg" alt="Componentes em esteira" />
+        </figure>
+      </div>
+    </section>
+
+    <section id="equipe">
+      <h2 class="section-title">Equipe 4G&R</h2>
+      <ul class="section-sub">
+        <li>Gabriel de Campos Rodrigues - RA 202302913</li>
+        <li>Gabriel Inácio da Rosa - RA 202111008</li>
+        <li>Gabrieli Luísa Eckstein dos Santos - RA 202303060</li>
+        <li>Giovani Belan - RA 202223458</li>
+        <li>Rafael Antônio Ribeiro da Silva - RA 202316675</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <span>© <span id="year"></span> Projeto 4G&R - Esteira Didática</span>
+        <span><a href="#inicio">Voltar ao topo</a></span>
+      </div>
+    </footer>
+  </body>
+</html>
