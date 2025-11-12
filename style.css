@@ -182,11 +182,20 @@ section {
 .span-6 {
   grid-column: span 6;
 }
+.span-2 {
+  grid-column: span 2;
+}
+.span-3 {
+  grid-column: span 3;
+}
 .span-4 {
   grid-column: span 4;
 }
 .span-8 {
   grid-column: span 8;
+}
+.full {
+  grid-column: span 12;
 }
 @media (max-width: 900px) {
   .gallery {
@@ -194,17 +203,27 @@ section {
   }
   .span-8,
   .span-6,
+  .span-2,
+  .span-3,
   .span-4 {
+    grid-column: span 3;
+  }
+  .full {
     grid-column: span 6;
   }
 }
-@media (max-width: 560px) {
+@media (max-width: 650px) {
   .gallery {
     grid-template-columns: repeat(2, 1fr);
   }
   .span-8,
   .span-6,
+  .span-2,
+  .span-3,
   .span-4 {
+    grid-column: span 2;
+  }
+  .full {
     grid-column: span 2;
   }
 }
@@ -233,4 +252,8 @@ footer {
   height: 4em;
   width: 4em;
   background-color: gray;
+}
+
+video {
+  width: 100%;
 }
