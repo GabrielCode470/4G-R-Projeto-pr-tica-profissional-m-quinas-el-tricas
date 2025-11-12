@@ -29,13 +29,16 @@ body {
 }
 
 header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 50;
   backdrop-filter: blur(10px);
   background: rgba(17, 24, 39, 0.7);
   border-bottom: 1px solid rgba(148, 163, 184, 0.15);
 }
+
 .nav {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -84,7 +87,7 @@ nav a:hover {
   padding: 8px 10px;
   border-radius: 10px;
 }
-@media (max-width: 780px) {
+@media (max-width: 900px) {
   nav {
     display: none;
   }
@@ -105,6 +108,10 @@ nav a:hover {
     display: block;
     margin: 10px 0;
   }
+}
+
+#inicio {
+  margin-top: 4.75em;
 }
 
 section {
