@@ -24,6 +24,7 @@
           <a href="#projeto">O Projeto</a>
           <a href="#galeria">Galeria</a>
           <a href="#equipe">Equipe</a>
+          <a href="#aprofundamento">Aprofundamento</a>
         </nav>
       </div>
     </header>
@@ -84,14 +85,187 @@
           <h3>Infraestrutura</h3>
           <ul>
             <li>Motor DC (12-24V)</li>
-            <li>Driver H-Bridge (BTS7960 ou similar)</li>
-            <li>Microcontrolador Arduino Uno/Nano</li>
-            <li>Estrutura em MDF/acrílico, correia e roldanas</li>
-            <li>Fonte de 12V ou bateria</li>
-            <li>Painel de LEDs para regeneração</li>
+            <li>4 Mosfet IRF3205</li>
+            <li>Microcontrolador Arduino Uno</li>
+            <li>Estrutura em madeira, plastico, correia, eixo e rolamentos</li>
+            <li>Fonte de 12V</li>
           </ul>
         </article>
       </div>
+    </section>
+
+    <section id="aprofundamento">
+      <h2 class="section-title">Aprofundamento</h2>
+
+      <h3>O motor de corrente contínua</h3>
+      <p class="section-sub">
+        Também conhecido como motor DC, é um dos dispositivos mais antigos e versáteis da eletrônica
+        e da engenharia elétrica. Ele transforma energia elétrica contínua em energia mecânica de
+        rotação, sendo amplamente utilizado em robôs, veículos elétricos, sistemas de automação e
+        diversos equipamentos industriais. Um dos aspectos mais importantes do controle desse tipo
+        de motor é a forma como se manipula a tensão e a corrente que chegam até seus terminais, e é
+        justamente aí que entra a chamada <strong>ponte H</strong> — um circuito fundamental para
+        controlar o sentido e a velocidade de rotação.
+      </p>
+
+      <h3>Funcionamento básico do motor DC</h3>
+      <p class="section-sub">
+        Para compreender a ideia da ponte H, é preciso lembrar como funciona um motor DC. Quando
+        aplicamos uma tensão contínua nos seus terminais, surge uma corrente que atravessa o
+        enrolamento do rotor. Essa corrente interage com o campo magnético do estator e gera uma
+        força eletromagnética que faz o eixo girar. Se invertermos a polaridade da tensão — isto é,
+        trocarmos o positivo pelo negativo — o campo magnético interno também se inverte, e o motor
+        passa a girar no sentido oposto.
+      </p>
+      <p class="section-sub">
+        Assim, controlar o sentido de rotação de um motor DC nada mais é do que inverter o sentido
+        da corrente que o atravessa. E controlar a velocidade é uma questão de variar a
+        <strong>tensão média</strong> aplicada. Essa variação costuma ser feita por meio de um sinal
+        chamado <strong>PWM (Pulse Width Modulation)</strong>, que é um trem de pulsos cuja largura
+        (ou “duty cycle”) define a potência média entregue ao motor. Quanto mais largo o pulso,
+        maior a velocidade; quanto mais estreito, menor.
+      </p>
+
+      <h3>A ponte H</h3>
+      <p class="section-sub">
+        O nome “ponte H” vem da forma como o circuito é organizado. Se desenharmos quatro
+        interruptores (ou transistores) dispostos de forma que dois fiquem acima e dois abaixo do
+        motor, veremos que o esquema lembra a letra “H”. O motor fica no meio, como o “traço”
+        central dessa letra.
+      </p>
+      <p class="section-sub">
+        Quando ligamos os interruptores da diagonal superior esquerda e inferior direita, a corrente
+        flui num sentido e o motor gira, por exemplo, no sentido horário. Se desligarmos esses dois
+        e ligarmos os da diagonal oposta (superior direita e inferior esquerda), a corrente passa a
+        fluir no sentido contrário, fazendo o motor girar anti-horário. Essa é a lógica fundamental
+        da ponte H:
+        <strong
+          >controlar o sentido da corrente no motor para controlar o sentido de rotação.</strong
+        >
+      </p>
+      <p class="section-sub">
+        Além disso, ao desligar todos os interruptores, o motor fica “livre”, podendo girar por
+        inércia. E se ligarmos ambos os transistores de um mesmo lado, o motor é forçado a parar
+        rapidamente — um efeito conhecido como <strong>freio dinâmico</strong>. Essa flexibilidade
+        de controle é o que torna a ponte H tão importante em sistemas de acionamento.
+      </p>
+
+      <h3>MOSFETs como chaves eletrônicas</h3>
+      <p class="section-sub">
+        Nos circuitos modernos, esses “interruptores” da ponte H geralmente são
+        <strong>transistores MOSFET</strong>
+        (Metal-Oxide-Semiconductor Field-Effect Transistor). Eles são dispositivos semicondutores
+        que funcionam como chaves controladas por tensão. Ou seja, quando aplicamos uma pequena
+        diferença de potencial no terminal de controle (chamado “gate”), o MOSFET conduz corrente
+        entre seus outros dois terminais (dreno e fonte), permitindo a passagem da energia elétrica
+        para o motor.
+      </p>
+      <p class="section-sub">
+        Os MOSFETs são preferidos em relação a transistores bipolares porque apresentam
+        <strong>baixa resistência quando ligados </strong>, o que significa menor dissipação de
+        calor e maior eficiência. Além disso, conseguem comutar rapidamente, o que é essencial para
+        o controle por PWM em altas frequências.
+      </p>
+      <p class="section-sub">
+        Normalmente, utilizam-se quatro MOSFETs: dois no lado superior da ponte (lado de alta
+        tensão, ou “high side”) e dois no lado inferior (“low side”). Esses dispositivos são
+        acionados de forma coordenada para garantir que nunca haja curto-circuito direto entre a
+        alimentação e o terra, algo que poderia queimar o circuito instantaneamente.
+      </p>
+
+      <h3>O conceito dos quatro quadrantes</h3>
+      <p class="section-sub">
+        Até aqui, falamos apenas de girar o motor para frente e para trás, ou de controlá-lo por
+        PWM. Mas em aplicações mais sofisticadas, como veículos elétricos, braços robóticos ou
+        elevadores, o controle precisa ser mais inteligente: o sistema deve ser capaz de
+        <strong>
+          frear o motor, reverter o sentido suavemente e, em alguns casos, devolver energia para a
+          fonte.
+        </strong>
+        É aí que entra o conceito de <strong>controle de quatro quadrantes</strong>.
+      </p>
+      <p class="section-sub">
+        A ideia dos quatro quadrantes vem da relação entre atensão aplicada ao motor
+        <strong>tensão aplicada ao motor</strong> e a
+        <strong>corrente que circula por ele.</strong> Se representarmos essas duas grandezas num
+        gráfico cartesiano, podemos imaginar quatro regiões — os chamados quadrantes — que
+        correspondem a diferentes modos de operação do motor.
+      </p>
+      <ul class="section-sub">
+        <li>
+          <strong>Primeiro quadrante:</strong> tanto a tensão quanto a corrente são positivas. O
+          motor gira em um sentido e está consumindo energia da fonte — é o modo de aceleração “para
+          frente”.
+        </li>
+        <li>
+          <strong>Segundo quadrante:</strong> a tensão continua positiva, mas a corrente se torna
+          negativa. Isso significa que o motor ainda gira no mesmo sentido, porém agora está atuando
+          como um gerador — ou seja, está freando e devolvendo energia para o sistema (freio
+          regenerativo).
+        </li>
+        <li>
+          <strong>Terceiro quadrante:</strong> tensão e corrente são negativas. O motor gira no
+          sentido oposto, também acelerando, mas agora com a polaridade invertida.
+        </li>
+        <li>
+          <strong>Quarto quadrante:</strong> a tensão é negativa e a corrente positiva. O motor está
+          girando no sentido reverso, mas o sistema aplica um esforço contrário — novamente uma
+          forma de freio regenerativo, só que no sentido oposto.
+        </li>
+      </ul>
+      <p class="section-sub">
+        Um controlador que opere apenas no primeiro quadrante consegue apenas acelerar o motor em um
+        sentido.
+      </p>
+      <p class="section-sub">
+        Um de dois quadrantes já consegue girar e frear nesse mesmo sentido.
+      </p>
+      <p class="section-sub">
+        Já o <strong>controle de quatro quadrantes</strong> é o mais completo, pois permite
+        <strong> acelerar e frear nos dois sentidos de rotação </strong>, oferecendo total domínio
+        sobre o comportamento do motor.
+      </p>
+
+      <h3>Aplicações e vantagens práticas</h3>
+      <p class="section-sub">
+        Os sistemas com ponte H de quatro MOSFETs e controle em quatro quadrantes são amplamente
+        utilizados em robótica, veículos elétricos, esteiras industriais e drones. Em robôs móveis,
+        por exemplo, é comum usar esse tipo de ponte para permitir movimentos suaves, reversões
+        rápidas e frenagens precisas. Nos carros elétricos, o mesmo princípio é aplicado em escala
+        maior: quando o motorista solta o acelerador, o motor se comporta como um gerador e a
+        energia de frenagem é devolvida às baterias, aumentando a eficiência energética do veículo.
+      </p>
+      <p class="section-sub">
+        Outro benefício desse tipo de controle é a capacidade de programar perfis de aceleração e
+        desaceleração com grande precisão. O microcontrolador, ou o circuito de controle, pode
+        ajustar dinamicamente a tensão e o sentido da corrente, obtendo movimentos mais suaves e
+        seguros. Isso reduz o desgaste mecânico, evita solavancos e permite respostas mais rápidas a
+        comandos.
+      </p>
+
+      <h3>Resumo</h3>
+      <p class="section-sub">
+        Em resumo,
+        <strong>
+          um motor de corrente contínua com uma ponte H de quatro MOSFETs e controle em quatro
+          quadrantes
+        </strong>
+        representa uma combinação poderosa de simplicidade e eficiência.
+      </p>
+      <p class="section-sub">
+        A ponte H fornece a estrutura necessária para inverter o sentido da corrente no motor,
+        enquanto os MOSFETs garantem um controle rápido e com baixo desperdício de energia. Quando
+        esse conjunto é usado dentro de um sistema de quatro quadrantes, o motor pode não apenas
+        girar em ambos os sentidos, mas também
+        <strong> frear, regenerar energia e responder com precisão a comandos complexos. </strong>
+      </p>
+      <p class="section-sub">
+        Esse tipo de controle é um marco no campo da eletrônica de potência e do acionamento de
+        motores, unindo fundamentos clássicos da engenharia elétrica a tecnologias modernas de
+        semicondutores e controle digital. Entender seu funcionamento é essencial para qualquer
+        estudante ou profissional que deseje dominar a arte de controlar o movimento de forma
+        eficiente, precisa e inteligente.
+      </p>
     </section>
 
     <section id="galeria">
